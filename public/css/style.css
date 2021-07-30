@@ -1,0 +1,29 @@
+.hero-img {
+  max-width: 85%;
+}
+
+.hero-card .card-header {
+  background: none !important;
+}
+
+@media (max-width: 575px) {
+  .hero-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+    max-height: 220px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-card {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-card {
+    max-width: 70%;
+  }
+}
