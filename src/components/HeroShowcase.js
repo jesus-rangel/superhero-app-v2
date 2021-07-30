@@ -1,11 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const HeroShowcase = () => {
+  const dispatch = useDispatch();
+
   const results = useSelector((state) => state.results);
 
   const error = useSelector((state) => state.error);
 
+  const handleAddToTeam = (result) => {
+    dispatch({ type: "ADD_HERO_TO_TEAM", hero: result });
+  };
   return (
     <div>
       <div className={`${!error ? "hide" : ""} mt-5`}>
@@ -15,7 +20,7 @@ const HeroShowcase = () => {
       <div>
         {results.map((result) => {
           return (
-            <div className="row justify-content-center">
+            <div className="row justify-content-center" key={result.id}>
               <div
                 className="card rounded shadow col mt-3 hero-card"
                 key={result.id}
@@ -91,7 +96,12 @@ const HeroShowcase = () => {
                         : result.powerstats.combat}
                     </p>
                     <div className="text-center">
-                      <button className="btn btn-success">Add to Team</button>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => handleAddToTeam(result)}
+                      >
+                        Add to Team
+                      </button>
                     </div>
                   </div>
                 </div>
