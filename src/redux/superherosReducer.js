@@ -15,8 +15,8 @@ export default function (state = initialState, action) {
       return state;
     case "ADD_HERO_TO_TEAM":
       state.team.heros = [...state.team.heros, action.hero];
-      const temp = Object.assign({}, state);
-      return temp;
+      state.team = Object.assign({}, state.team);
+      return Object.assign({}, state);
   }
 
   return state;
