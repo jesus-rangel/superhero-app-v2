@@ -5,10 +5,22 @@ const HeroShowcase = () => {
   const dispatch = useDispatch();
 
   const results = useSelector((state) => state.results);
+  const team = useSelector((state) => state.team);
 
   const error = useSelector((state) => state.error);
 
   const handleAddToTeam = (result) => {
+    console.log(team);
+    if (result.biography.alignment === "bad" && team.badguys === 3) {
+      console.log("Limit of villains reached");
+      return;
+    }
+
+    if (result.biography.alignment === "good" && team.goodguys === 3) {
+      console.log("Limit of good guys reached");
+      return;
+    }
+
     dispatch({ type: "ADD_HERO_TO_TEAM", hero: result });
   };
   return (

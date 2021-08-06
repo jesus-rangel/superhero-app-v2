@@ -16,6 +16,16 @@
   }
 }
 
+@media (max-width: 767px) {
+  h3 {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.75rem;
+  }
+}
+
 @media (min-width: 768px) {
   .hero-card {
     max-width: 80%;

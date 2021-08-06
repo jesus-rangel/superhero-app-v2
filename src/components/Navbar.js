@@ -1,11 +1,19 @@
 import React from "react";
 import HeroSearchForm from "./HeroSearchForm";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const handleViewTeam = (e) => {
+    e.preventDefault();
+    dispatch({ type: "VIEW_TEAM" });
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container fluid d-flex justify-content-around">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/" onClick={handleViewTeam}>
           SuperTeam Creator
         </a>
         <button
@@ -23,8 +31,8 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
-                My Team <span className="sr-only">(current)</span>
+              <a className="nav-link" href="/" onClick={handleViewTeam}>
+                My Team
               </a>
             </li>
             <li className="nav-item">
