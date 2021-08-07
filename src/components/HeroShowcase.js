@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const HeroShowcase = () => {
   const dispatch = useDispatch();
@@ -21,11 +22,12 @@ const HeroShowcase = () => {
       return;
     }
 
+    toast("Character added to your team!");
     dispatch({ type: "ADD_HERO_TO_TEAM", hero: result });
   };
   return (
     <div>
-      <div className={`${!error ? "hide" : ""} mt-5`}>
+      <div className={`${!error ? "hide" : ""} mt-2`}>
         <h3 className="text-center">{error}</h3>
       </div>
 

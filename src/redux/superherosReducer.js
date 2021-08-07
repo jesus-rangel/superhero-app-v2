@@ -1,8 +1,10 @@
+import { setLocal, getLocal } from "./localStorage";
+
 const initialState = {
   error: null,
   results: [],
-  team: { heros: [], goodguys: 0, badguys: 0 },
-  isSearching: false,
+  team: getLocal("superTeam-team", { heros: [], goodguys: 0, badguys: 0 }),
+  userIsSearching: false,
 };
 
 export default function (state = initialState, action) {
@@ -10,11 +12,11 @@ export default function (state = initialState, action) {
     case "SET_RESULTS":
       state.error = null;
       state.results = action.results;
-      state.isSearching = true;
+      state.userIsSearching = true;
       return state;
     case "SET_ERROR":
       state.error = action.error;
-      state.isSearching = true;
+      state.userIsSearching = true;
       return state;
     case "ADD_HERO_TO_TEAM":
       state.team.heros = [...state.team.heros, action.hero];
@@ -24,9 +26,15 @@ export default function (state = initialState, action) {
         state.team.goodguys++;
       }
       state.team = Object.assign({}, state.team);
+      setLocal("superTeam-team", state.team);
       return Object.assign({}, state);
+    case "REMOVE_HERO_FROM_TEAM":
+      state.team.heros = state.team.heros.filter(
+        (hero) => hero.id !== action.id
+      );
+      return state;
     case "VIEW_TEAM":
-      state.isSearching = false;
+      state.userIsSearching = false;
       return state;
   }
 
