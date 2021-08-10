@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import HeroTable from "./HeroTable";
 
 const HeroShowcase = () => {
   const dispatch = useDispatch();
@@ -126,6 +127,7 @@ const HeroShowcase = () => {
           );
         })}
       </div>
+      <HeroTable />
     </div>
   );
 };
