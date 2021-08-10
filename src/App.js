@@ -7,14 +7,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const isSearching = useSelector((state) => state.isSearching);
+  const userIsSearching = useSelector((state) => state.userIsSearching);
 
   return (
     <div>
       <Navbar />
       <ToastContainer />
-      {!isSearching && <TeamShowcase />}
-      {isSearching && <HeroShowcase />}
+      {!userIsSearching && <TeamShowcase />}
+      {userIsSearching && <HeroShowcase />}
     </div>
   );
 };

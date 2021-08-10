@@ -30,6 +30,10 @@
   .hero-card {
     max-width: 80%;
   }
+
+  .hero-table {
+    max-width: 60%;
+  }
 }
 
 @media (min-width: 1200px) {

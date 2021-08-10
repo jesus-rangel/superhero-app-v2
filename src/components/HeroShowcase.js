@@ -12,13 +12,18 @@ const HeroShowcase = () => {
 
   const handleAddToTeam = (result) => {
     console.log(team);
+    if (team.heroes.find((hero) => hero.id === result.id)) {
+      toast("This character is on your team already!");
+      return;
+    }
+
     if (result.biography.alignment === "bad" && team.badguys === 3) {
-      console.log("Limit of villains reached");
+      toast("You can't have more than 3 bad guys!");
       return;
     }
 
     if (result.biography.alignment === "good" && team.goodguys === 3) {
-      console.log("Limit of good guys reached");
+      toast("You can't have more than 3 good guys!");
       return;
     }
 
@@ -44,13 +49,10 @@ const HeroShowcase = () => {
                     {result.name} ({result.biography["full-name"]})
                   </h3>
                 </div>
-                {/* Hero Card */}
                 <div className="card-body row">
-                  {/* Image Column */}
                   <div className="col-sm-6">
                     <img src={result.image.url} className="hero-img"></img>
                   </div>
-                  {/* Hero Data Column */}
                   <div className="col-sm-6">
                     <p
                       className={
