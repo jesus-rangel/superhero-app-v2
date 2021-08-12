@@ -1,33 +1,33 @@
-import { setLocal, getLocal } from "./localStorage";
-import { calculateTeamIntelligence } from "../helpers/powerstatsCalculators";
+import { setLocal, getLocal } from "../helpers/localStorage";
+import { powerStatSum } from "../helpers/helperFunctions";
 
 const initialState = {
   error: null,
-  results: [],
+  results: [], // "results" Refers to heroes returned from the search
   team: getLocal("superTeam-team", {
-    heroes: [],
+    heroes: [], // "heroes" Refers to the heroes already in the team
     goodguys: 0,
     badguys: 0,
-    teamIntelligence: 0,
-    teamStrength: 0,
-    teamSpeed: 0,
-    teamDurability: 0,
-    teamPower: 0,
-    teamCombat: 0,
-    averageHeight: 0,
+    /* Powerstats for the team */
+    intelligence: 0,
+    strength: 0,
+    speed: 0,
+    durability: 0,
+    power: 0,
+    combat: 0,
   }),
   userIsSearching: false,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "SET_RESULTS":
+    case "SET_RESULTS": // Search for a hero
       state.error = null;
       state.results = action.results;
       state.userIsSearching = true;
       return Object.assign({}, state);
 
-    case "SET_ERROR":
+    case "SET_ERROR": // Getting an error from the hero API
       state.error = action.error;
       state.userIsSearching = true;
       return Object.assign({}, state);
@@ -36,52 +36,17 @@ export default function (state = initialState, action) {
       state.team.heroes = [...state.team.heroes, action.hero];
       if (action.hero.biography.alignment === "bad") {
         state.team.badguys++;
-      } else {
+      } else if (action.hero.biography.alignment === "good") {
         state.team.goodguys++;
       }
 
-      /* POWERSTATS CALCULATION */
-      state.team.teamIntelligence = state.team.heroes.reduce(
-        (teamIntelligence, hero) => {
-          return teamIntelligence + parseInt(hero.powerstats.intelligence, 10);
-        },
-        0
-      );
-      state.team.teamStrength = state.team.heroes.reduce(
-        (teamStrength, hero) => {
-          return teamStrength + parseInt(hero.powerstats.strength, 10);
-        },
-        0
-      );
-      state.team.teamSpeed = state.team.heroes.reduce((teamSpeed, hero) => {
-        return teamSpeed + parseInt(hero.powerstats.speed, 10);
-      }, 0);
-      state.team.teamDurability = state.team.heroes.reduce(
-        (teamDurability, hero) => {
-          return teamDurability + parseInt(hero.powerstats.durability, 10);
-        },
-        0
-      );
-      state.team.teamPower = state.team.heroes.reduce((teamPower, hero) => {
-        return teamPower + parseInt(hero.powerstats.power, 10);
-      }, 0);
-      state.team.teamCombat = state.team.heroes.reduce((teamCombat, hero) => {
-        return teamCombat + parseInt(hero.powerstats.combat, 10);
-      }, 0);
-
-      /* Weight and Height Average */
-      /* let regexp = /^(\d*)\s.*$/;
-
-      const heightCalc = state.team.heroes.reduce((averageHeight, hero) => {
-        const result = regexp.exec(hero.appearance.height[1]);
-        if (result != null) {
-          return averageHeight + parseInt(result[1], 10);
-        } else {
-          return 0;
-        }
-      });
-
-      state.team.averageHeight = heightCalc / state.team.heroes.length; */
+      /* POWERSTATS SUM */
+      state.team.intelligence = powerStatSum(state.team.heroes, "intelligence");
+      state.team.strength = powerStatSum(state.team.heroes, "strength");
+      state.team.speed = powerStatSum(state.team.heroes, "speed");
+      state.team.durability = powerStatSum(state.team.heroes, "durability");
+      state.team.power = powerStatSum(state.team.heroes, "power");
+      state.team.combat = powerStatSum(state.team.heroes, "combat");
 
       state.team = Object.assign({}, state.team);
       setLocal("superTeam-team", state.team);
@@ -97,40 +62,19 @@ export default function (state = initialState, action) {
         state.team.goodguys--;
       }
 
-      /* POWERSTATS CALCULATION */
-      state.team.teamIntelligence = state.team.heroes.reduce(
-        (teamIntelligence, hero) => {
-          return teamIntelligence + parseInt(hero.powerstats.intelligence, 10);
-        },
-        0
-      );
-      state.team.teamStrength = state.team.heroes.reduce(
-        (teamStrength, hero) => {
-          return teamStrength + parseInt(hero.powerstats.strength, 10);
-        },
-        0
-      );
-      state.team.teamSpeed = state.team.heroes.reduce((teamSpeed, hero) => {
-        return teamSpeed + parseInt(hero.powerstats.speed, 10);
-      }, 0);
-      state.team.teamDurability = state.team.heroes.reduce(
-        (teamDurability, hero) => {
-          return teamDurability + parseInt(hero.powerstats.durability, 10);
-        },
-        0
-      );
-      state.team.teamPower = state.team.heroes.reduce((teamPower, hero) => {
-        return teamPower + parseInt(hero.powerstats.power, 10);
-      }, 0);
-      state.team.teamCombat = state.team.heroes.reduce((teamCombat, hero) => {
-        return teamCombat + parseInt(hero.powerstats.combat, 10);
-      }, 0);
+      /* POWERSTATS SUM */
+      state.team.intelligence = powerStatSum(state.team.heroes, "intelligence");
+      state.team.strength = powerStatSum(state.team.heroes, "strength");
+      state.team.speed = powerStatSum(state.team.heroes, "speed");
+      state.team.durability = powerStatSum(state.team.heroes, "durability");
+      state.team.power = powerStatSum(state.team.heroes, "power");
+      state.team.combat = powerStatSum(state.team.heroes, "combat");
 
       state.team = Object.assign({}, state.team);
       setLocal("superTeam-team", state.team);
       return Object.assign({}, state);
 
-    case "VIEW_TEAM":
+    case "VIEW_TEAM": // Return to home screen where team is visible
       state.userIsSearching = false;
       return Object.assign({}, state);
   }

@@ -12,36 +12,28 @@ const HeroTable = () => {
         </thead>
         <tbody>
           <tr>
-            <th>Intelligence</th>
-            <td>{team.teamIntelligence}</td>
+            <th className="text-center">Intelligence</th>
+            <td>{team.intelligence}</td>
           </tr>
           <tr>
-            <th>Strength</th>
-            <td>{team.teamStrength}</td>
+            <th className="text-center">Strength</th>
+            <td>{team.strength}</td>
           </tr>
           <tr>
-            <th>Speed</th>
-            <td>{team.teamSpeed}</td>
+            <th className="text-center">Speed</th>
+            <td>{team.speed}</td>
           </tr>
           <tr>
-            <th>Durability</th>
-            <td>{team.teamDurability}</td>
+            <th className="text-center">Durability</th>
+            <td>{team.durability}</td>
           </tr>
           <tr>
-            <th>Power</th>
-            <td>{team.teamPower}</td>
+            <th className="text-center">Power</th>
+            <td>{team.power}</td>
           </tr>
           <tr>
-            <th>Combat</th>
-            <td>{team.teamCombat}</td>
-          </tr>
-          <tr>
-            {/*<th>Height (Average)</th>
-              <td>Number</td>
-            </tr>
-            <tr>
-              <th>Weight (Average)</th>
-              <td>Number</td> */}
+            <th className="text-center">Combat</th>
+            <td>{team.combat}</td>
           </tr>
         </tbody>
       </table>

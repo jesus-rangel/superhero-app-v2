@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { showPowerStat } from "../helpers/helperFunctions";
 import HeroTable from "./HeroTable";
 
 const TeamShowcase = () => {
@@ -7,7 +8,12 @@ const TeamShowcase = () => {
   const team = useSelector((state) => state.team);
 
   const handleRemoveFromTeam = (hero) => {
-    dispatch({ type: "REMOVE_HERO_FROM_TEAM", hero });
+    const confirm = window.confirm(
+      "Are you sure you want to remove this character?"
+    );
+    if (confirm === true) {
+      dispatch({ type: "REMOVE_HERO_FROM_TEAM", hero });
+    }
   };
 
   return (
@@ -17,9 +23,7 @@ const TeamShowcase = () => {
         Use the Navbar above to pick three villains and three heroes
       </h4>
       <h4 className="text-center mt-3">
-        {team.heroes.length === 0
-          ? "You have no characters selected"
-          : "Your Team"}
+        {team.heroes.length === 0 ? "" : "Your Team:"}
       </h4>
       <div className="row text-center heroes-in-team">
         {team.heroes.map((hero, index) => (
@@ -30,7 +34,9 @@ const TeamShowcase = () => {
             <div className="row">
               <div className="col">
                 <p>
-                  {hero.name} ({hero.biography["full-name"]})
+                  {hero.name}{" "}
+                  {hero.biography["full-name"] &&
+                    `(${hero.biography["full-name"]})`}
                 </p>
                 <p
                   className={
@@ -41,38 +47,20 @@ const TeamShowcase = () => {
                 >
                   Alignment: {hero.biography.alignment}
                 </p>
-                <p>Height: {hero.appearance.height[0]}</p>
-                <p>Weight: {hero.appearance.weight[0]}</p>
+                <p>Height: {hero.appearance.height[1]}</p>
+                <p>Weight: {hero.appearance.weight[1]}</p>
                 <p>
-                  Intelligence:{" "}
-                  {hero.powerstats.intelligence === "null"
-                    ? "Unknown"
-                    : hero.powerstats.intelligence}
+                  Intelligence: {showPowerStat(hero.powerstats.intelligence)}
                   <br></br>
-                  Strength:{" "}
-                  {hero.powerstats.strength === "null"
-                    ? "Unknown"
-                    : hero.powerstats.strength}
+                  Strength: {showPowerStat(hero.powerstats.strength)}
                   <br></br>
-                  Speed:{" "}
-                  {hero.powerstats.speed === "null"
-                    ? "Unknown"
-                    : hero.powerstats.speed}
+                  Speed: {showPowerStat(hero.powerstats.speed)}
                   <br></br>
-                  Durability:{" "}
-                  {hero.powerstats.durability === "null"
-                    ? "Unknown"
-                    : hero.powerstats.durability}
+                  Durability: {showPowerStat(hero.powerstats.durability)}
                   <br></br>
-                  Power:{" "}
-                  {hero.powerstats.power === "null"
-                    ? "Unknown"
-                    : hero.powerstats.power}
+                  Power: {showPowerStat(hero.powerstats.power)}
                   <br></br>
-                  Combat:{" "}
-                  {hero.powerstats.combat === "null"
-                    ? "Unknown"
-                    : hero.powerstats.combat}
+                  Combat: {showPowerStat(hero.powerstats.combat)}
                 </p>
               </div>
               <div className="col">

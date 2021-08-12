@@ -1,3 +1,5 @@
+// Functions for setting and retrieving the team from LocalStorage
+
 export const getLocal = (key, defaultValue) => {
   const value = localStorage.getItem(key);
   if (!value) {

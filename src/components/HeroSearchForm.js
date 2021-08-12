@@ -26,7 +26,7 @@ const HeroSearchForm = (props) => {
           className="form-control my-1"
           value={heroName}
           onChange={(e) => setHeroName(e.target.value)}
-          placeholder="Search your Hero"
+          placeholder="Search for your character"
         />
         <button onClick={handleHeroSearch} className="btn btn-secondary ml-1">
           Search

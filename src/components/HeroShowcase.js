@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import HeroTable from "./HeroTable";
+import { showPowerStat } from "../helpers/helperFunctions";
 
 const HeroShowcase = () => {
   const dispatch = useDispatch();
@@ -28,11 +29,17 @@ const HeroShowcase = () => {
       return;
     }
 
+    if (team.heroes.length === 6) {
+      toast("You have reached the maximum of 6 characters!");
+      return;
+    }
+
     toast("Character added to your team!");
     dispatch({ type: "ADD_HERO_TO_TEAM", hero: result });
   };
   return (
     <div>
+      {/* If error in search, display here */}
       <div className={`${!error ? "hide" : ""} mt-2`}>
         <h3 className="text-center">{error}</h3>
       </div>
@@ -47,7 +54,9 @@ const HeroShowcase = () => {
               >
                 <div className="card-header text-center">
                   <h3>
-                    {result.name} ({result.biography["full-name"]})
+                    {result.name}{" "}
+                    {result.biography["full-name"] &&
+                      `(${result.biography["full-name"]})`}
                   </h3>
                 </div>
                 <div className="card-body row">
@@ -67,50 +76,33 @@ const HeroShowcase = () => {
                     </p>
                     <p>
                       <span className="lead">Place of birth:</span>{" "}
-                      {result.biography["place-of-birth"].length > 2
+                      {result.biography["place-of-birth"].length > 1
                         ? result.biography["place-of-birth"]
                         : "Unknown"}
                     </p>
                     <p>
                       <span className="lead">Height:</span>{" "}
-                      {result.appearance.height[0]}
+                      {result.appearance.height[1]}
                     </p>
                     <p>
                       <span className="lead">Weight:</span>{" "}
-                      {result.appearance.weight[0]}
+                      {result.appearance.weight[1]}
                     </p>
                     <p>
                       <span className="lead">PowerStats</span>
                       <br></br>
                       Intelligence:{" "}
-                      {result.powerstats.intelligence === "null"
-                        ? "Unknown"
-                        : result.powerstats.intelligence}
+                      {showPowerStat(result.powerstats.intelligence)}
                       <br></br>
-                      Strength:{" "}
-                      {result.powerstats.strength === "null"
-                        ? "Unknown"
-                        : result.powerstats.strength}
+                      Strength: {showPowerStat(result.powerstats.strength)}
                       <br></br>
-                      Speed:{" "}
-                      {result.powerstats.speed === "null"
-                        ? "Unknown"
-                        : result.powerstats.speed}
+                      Speed: {showPowerStat(result.powerstats.speed)}
                       <br></br>
-                      Durability:{" "}
-                      {result.powerstats.durability === "null"
-                        ? "Unknown"
-                        : result.powerstats.durability}
+                      Durability: {showPowerStat(result.powerstats.durability)}
                       <br></br>
-                      Power:{" "}
-                      {result.powerstats.power === "null"
-                        ? "Unknown"
-                        : result.powerstats.power}
+                      Power: {showPowerStat(result.powerstats.power)}
                       <br></br>
-                      Combat:{" "}
-                      {result.powerstats.combat === "null"
-                        ? "Unknown"
-                        : result.powerstats.combat}
+                      Combat: {showPowerStat(result.powerstats.combat)}
                     </p>
                     <div className="text-center">
                       <button

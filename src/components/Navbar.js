@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-md navbar-dark bg-primary">
       <div className="container fluid d-flex justify-content-around">
         <a className="navbar-brand" href="/" onClick={handleViewTeam}>
           SuperTeam Creator
@@ -35,11 +35,11 @@ const Navbar = () => {
                 My Team
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link" href="#">
                 Logout
               </a>
-            </li>
+            </li> */}
           </ul>
           <HeroSearchForm />
         </div>
@@ -49,13 +49,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-/* <nav className="navbar navbar expand-lg navbar-dark bg-primary">
-  <div className="container fluid d-flex justify-content-around">
-    <a className="navbar-brand" href="/">
-      SuperTeam Creator
-    </a>
-
-    <HeroSearchForm />
-  </div>
-</nav> */
