@@ -8,12 +8,7 @@ const TeamShowcase = () => {
   const team = useSelector((state) => state.team);
 
   const handleRemoveFromTeam = (hero) => {
-    const confirm = window.confirm(
-      "Are you sure you want to remove this character?"
-    );
-    if (confirm === true) {
-      dispatch({ type: "REMOVE_HERO_FROM_TEAM", hero });
-    }
+    dispatch({ type: "REMOVE_HERO_FROM_TEAM", hero });
   };
 
   return (

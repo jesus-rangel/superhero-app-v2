@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
-const HeroSearchForm = (props) => {
+const HeroSearchForm = () => {
   const [heroName, setHeroName] = useState("");
   const dispatch = useDispatch();
 
@@ -13,7 +13,6 @@ const HeroSearchForm = (props) => {
         dispatch({ type: "SET_ERROR", error: res.data.error });
       } else {
         dispatch({ type: "SET_RESULTS", results: res.data.results });
-        console.log(res.data.results);
       }
     });
   };
