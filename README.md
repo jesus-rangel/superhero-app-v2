@@ -8,9 +8,9 @@ Characters of Neutral alignment are also acceptable, but without exceeding a max
 
 The State of the App is managed using React-Redux.
 
-The Layout of the UI is built upon Bootswatch, a slightly customized version of Bootstrap, found here [https://bootswatch.com/] (The theme for this app is bootswatch Lux).
+The Layout of the UI is built upon Bootswatch, a slightly customized version of Bootstrap, found here https://bootswatch.com/ (The theme for this app is bootswatch Lux).
 
-When you search for a character, the App looks it up in the following API: [https://superheroapi.com]
+When you search for a character, the App looks it up in the following API: https://superheroapi.com
 
 ## How to Run
 
