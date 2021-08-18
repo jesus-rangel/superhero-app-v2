@@ -81,12 +81,20 @@ const HeroShowcase = () => {
                         : "Unknown"}
                     </p>
                     <p>
-                      <span className="lead">Height:</span>{" "}
-                      {result.appearance.height[1]}
+                      <span className="lead">Place of work:</span>{" "}
+                      {result.work.base}
                     </p>
                     <p>
-                      <span className="lead">Weight:</span>{" "}
+                      <span className="lead">Appearance:</span>
+                      <br></br>
+                      Height: {result.appearance.height[1]}
+                      <br></br>
+                      Weight:
                       {result.appearance.weight[1]}
+                      <br></br>
+                      Eye color: {result.appearance["eye-color"]}
+                      <br></br>
+                      Hair color: {result.appearance["hair-color"]}
                     </p>
                     <p>
                       <span className="lead">PowerStats</span>

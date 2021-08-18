@@ -1,9 +1,10 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import HeroShowcase from "./components/HeroShowcase";
-import TeamShowcase from "./components/TeamShowcase";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
+
+import HeroShowcase from "./components/HeroShowcase";
+import Navbar from "./components/Navbar";
+import TeamShowcase from "./components/TeamShowcase";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {

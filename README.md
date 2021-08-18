@@ -6,9 +6,23 @@ Characters of Neutral alignment are also acceptable, but without exceeding a max
 
 ## Technical Specs
 
-The State of the App is managed using React-Redux.
+#### State
 
-The Layout of the UI is built upon Bootswatch, a slightly customized version of Bootstrap, found here https://bootswatch.com/ (The theme for this app is bootswatch Lux).
+The State is managed using React-Redux.
+
+#### Routes
+
+Instead of using multiple Routes with React-Router, this App uses a single URL with conditional rendering to display what the user needs to see.
+
+#### Layout
+
+The Layout of the UI is built upon Bootswatch, a slightly customized version of Bootstrap 4, found here https://bootswatch.com/ (The theme for this app is Bootswatch Lux).
+
+#### User Authentication
+
+Authentication had to be performed outside of React, since I couldn't find a way to use React together with Bootstrap 4's dependency to JQuery, therefore Formik wasn't used.
+
+#### API
 
 When you search for a character, the App looks it up in the following API: https://superheroapi.com
 
