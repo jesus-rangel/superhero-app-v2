@@ -10,6 +10,11 @@ const Navbar = () => {
     dispatch({ type: "VIEW_TEAM" });
   };
 
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("superheroToken");
+    console.log("Logout is here.");
+  };
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary">
       <div className="container fluid d-flex justify-content-around">
@@ -36,7 +41,7 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#" onClick={logoutHandler}>
                 Logout
               </a>
             </li>

@@ -13,6 +13,7 @@ const HeroTable = () => {
     { label: "Combat", value: team.combat },
   ];
 
+  /* Compare function from Stack Overflow to organize highest stat */
   const compare = useCallback((a, b) => {
     if (a.value > b.value) {
       return -1;

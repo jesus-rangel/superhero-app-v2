@@ -13,3 +13,13 @@ export const powerStatSum = (heroes, powerstat) => {
     return teamPowerstat + parseInt(hero.powerstats[powerstat], 10);
   }, 0);
 };
+
+export const alignmentColor = (alignment) => {
+  if (alignment === "good") {
+    return "text-success";
+  } else if (alignment === "bad") {
+    return "text-danger";
+  } else {
+    return "text-info";
+  }
+};

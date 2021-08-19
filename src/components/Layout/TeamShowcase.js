@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { showPowerStat } from "../helpers/helperFunctions";
+import { alignmentColor } from "../../helpers/helperFunctions";
+
 import HeroTable from "./HeroTable";
+import Powerstats from "./Powerstats";
 
 const TeamShowcase = () => {
   const dispatch = useDispatch();
@@ -33,29 +35,13 @@ const TeamShowcase = () => {
                   {hero.biography["full-name"] &&
                     `(${hero.biography["full-name"]})`}
                 </p>
-                <p
-                  className={
-                    hero.biography.alignment === "good"
-                      ? "text-success"
-                      : "text-danger"
-                  }
-                >
+                <p className={alignmentColor(hero.biography.alignment)}>
                   Alignment: {hero.biography.alignment}
                 </p>
                 <p>Height: {hero.appearance.height[1]}</p>
                 <p>Weight: {hero.appearance.weight[1]}</p>
                 <p>
-                  Intelligence: {showPowerStat(hero.powerstats.intelligence)}
-                  <br></br>
-                  Strength: {showPowerStat(hero.powerstats.strength)}
-                  <br></br>
-                  Speed: {showPowerStat(hero.powerstats.speed)}
-                  <br></br>
-                  Durability: {showPowerStat(hero.powerstats.durability)}
-                  <br></br>
-                  Power: {showPowerStat(hero.powerstats.power)}
-                  <br></br>
-                  Combat: {showPowerStat(hero.powerstats.combat)}
+                  <Powerstats hero={hero} />
                 </p>
               </div>
               <div className="col">

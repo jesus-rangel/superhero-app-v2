@@ -1,8 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { alignmentColor } from "../../helpers/helperFunctions";
+
 import HeroTable from "./HeroTable";
-import { showPowerStat } from "../helpers/helperFunctions";
+import Powerstats from "./Powerstats";
 
 const HeroShowcase = () => {
   const dispatch = useDispatch();
@@ -64,13 +66,7 @@ const HeroShowcase = () => {
                     <img src={result.image.url} className="hero-img"></img>
                   </div>
                   <div className="col-sm-6">
-                    <p
-                      className={
-                        result.biography.alignment === "good"
-                          ? "text-success"
-                          : "text-danger"
-                      }
-                    >
+                    <p className={alignmentColor(result.biography.alignment)}>
                       <span className="lead">Alignment: </span>
                       {result.biography.alignment}
                     </p>
@@ -99,18 +95,7 @@ const HeroShowcase = () => {
                     <p>
                       <span className="lead">PowerStats</span>
                       <br></br>
-                      Intelligence:{" "}
-                      {showPowerStat(result.powerstats.intelligence)}
-                      <br></br>
-                      Strength: {showPowerStat(result.powerstats.strength)}
-                      <br></br>
-                      Speed: {showPowerStat(result.powerstats.speed)}
-                      <br></br>
-                      Durability: {showPowerStat(result.powerstats.durability)}
-                      <br></br>
-                      Power: {showPowerStat(result.powerstats.power)}
-                      <br></br>
-                      Combat: {showPowerStat(result.powerstats.combat)}
+                      <Powerstats hero={result} />
                     </p>
                     <div className="text-center">
                       <button
