@@ -15,7 +15,6 @@ const HeroShowcase = () => {
   const error = useSelector((state) => state.error);
 
   const handleAddToTeam = (result) => {
-    console.log(team);
     if (team.heroes.find((hero) => hero.id === result.id)) {
       toast("This character is on your team already!");
       return;
@@ -63,7 +62,11 @@ const HeroShowcase = () => {
                 </div>
                 <div className="card-body row">
                   <div className="col-sm-6">
-                    <img src={result.image.url} className="hero-img"></img>
+                    <img
+                      src={result.image.url}
+                      className="hero-img"
+                      alt=""
+                    ></img>
                   </div>
                   <div className="col-sm-6">
                     <p className={alignmentColor(result.biography.alignment)}>
@@ -85,8 +88,7 @@ const HeroShowcase = () => {
                       <br></br>
                       Height: {result.appearance.height[1]}
                       <br></br>
-                      Weight:
-                      {result.appearance.weight[1]}
+                      Weight: {result.appearance.weight[1]}
                       <br></br>
                       Eye color: {result.appearance["eye-color"]}
                       <br></br>

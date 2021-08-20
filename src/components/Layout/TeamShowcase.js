@@ -45,7 +45,12 @@ const TeamShowcase = () => {
                 </p>
               </div>
               <div className="col">
-                <img height="200px" src={hero.image.url} className="mb-4"></img>
+                <img
+                  height="200px"
+                  src={hero.image.url}
+                  className="mb-4"
+                  alt=""
+                ></img>
                 <br></br>
                 <button
                   className="btn btn-danger"

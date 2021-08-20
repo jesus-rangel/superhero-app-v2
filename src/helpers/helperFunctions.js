@@ -1,6 +1,6 @@
-/* If a PowerStat is not known, show "Unknown" instead of an empty string */
+/* If a PowerStat is not known, show "Unknown" instead of an empty string or the null value */
 export const showPowerStat = (powerstat) => {
-  if (powerstat === null) {
+  if (powerstat === null || powerstat === "null") {
     return "Unknown";
   }
 
@@ -14,6 +14,7 @@ export const powerStatSum = (heroes, powerstat) => {
   }, 0);
 };
 
+/* Change color of text acording to character's alignment */
 export const alignmentColor = (alignment) => {
   if (alignment === "good") {
     return "text-success";

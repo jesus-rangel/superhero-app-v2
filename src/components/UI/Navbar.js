@@ -5,15 +5,12 @@ import { useDispatch } from "react-redux";
 const Navbar = () => {
   const dispatch = useDispatch();
 
-  const handleViewTeam = (e) => {
-    e.preventDefault();
+  const handleViewTeam = () => {
     dispatch({ type: "VIEW_TEAM" });
   };
 
-  const logoutHandler = (e) => {
-    e.preventDefault();
+  const logoutHandler = () => {
     localStorage.removeItem("superheroToken");
-    console.log("Logout is here.");
   };
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary">
@@ -41,7 +38,7 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={logoutHandler}>
+              <a className="nav-link" href="/" onClick={logoutHandler}>
                 Logout
               </a>
             </li>

@@ -8,7 +8,8 @@ const initialState = {
     heroes: [], // "heroes" Refers to the heroes already in the team
     goodguys: 0,
     badguys: 0,
-    /* Powerstats for the team */
+    height: 0,
+    weight: 0,
     intelligence: 0,
     strength: 0,
     speed: 0,
@@ -19,9 +20,11 @@ const initialState = {
   userIsSearching: false,
 };
 
+let heroHeight, heroWeight;
+
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "SET_RESULTS": // Search for a hero
+    case "SET_RESULTS": // Searching for a character
       state.error = null;
       state.results = action.results;
       state.userIsSearching = true;
@@ -48,6 +51,13 @@ export default function (state = initialState, action) {
       state.team.power = powerStatSum(state.team.heroes, "power");
       state.team.combat = powerStatSum(state.team.heroes, "combat");
 
+      /* Height and weight */
+      heroHeight = +action.hero.appearance.height[1].match(/\d+/)[0];
+      state.team.height += heroHeight;
+
+      heroWeight = +action.hero.appearance.weight[1].match(/\d+/)[0];
+      state.team.weight += heroWeight;
+
       state.team = Object.assign({}, state.team);
       setLocal("superTeam-team", state.team);
       return Object.assign({}, state);
@@ -58,7 +68,7 @@ export default function (state = initialState, action) {
       );
       if (action.hero.biography.alignment === "bad") {
         state.team.badguys--;
-      } else {
+      } else if (action.hero.biography.alignment === "good") {
         state.team.goodguys--;
       }
 
@@ -70,11 +80,18 @@ export default function (state = initialState, action) {
       state.team.power = powerStatSum(state.team.heroes, "power");
       state.team.combat = powerStatSum(state.team.heroes, "combat");
 
+      /* Height and weight */
+      heroHeight = +action.hero.appearance.height[1].match(/\d+/)[0];
+      state.team.height -= heroHeight;
+
+      heroWeight = +action.hero.appearance.weight[1].match(/\d+/)[0];
+      state.team.weight -= heroWeight;
+
       state.team = Object.assign({}, state.team);
       setLocal("superTeam-team", state.team);
       return Object.assign({}, state);
 
-    case "VIEW_TEAM": // Return to home screen where team is visible
+    case "VIEW_TEAM": // Returning to home screen where team is visible
       state.userIsSearching = false;
       return Object.assign({}, state);
   }
