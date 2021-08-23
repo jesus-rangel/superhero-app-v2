@@ -1,19 +1,10 @@
-.hero-img {
-  max-width: 85%;
-}
+/* 
+ * Styles shared by more than one component will be here 
+ */
 
-.hero-card .card-header {
-  background: none !important;
-}
-
-@media (max-width: 575px) {
-  .hero-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0.5rem;
-    max-height: 150px;
-  }
+/* Class for making things visible with javascript */
+.visible {
+  visibility: visible !important;
 }
 
 @media (max-width: 767px) {
@@ -23,21 +14,5 @@
 
   h4 {
     font-size: 0.75rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-card {
-    max-width: 80%;
-  }
-
-  .hero-table {
-    max-width: 60%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-card {
-    max-width: 70%;
   }
 }

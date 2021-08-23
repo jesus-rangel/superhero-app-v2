@@ -1,0 +1,49 @@
+.hero-img {
+  max-width: 85%;
+}
+
+.hero-card .card-header {
+  background: none !important;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-appearance,
+.hero-powerstats {
+  flex-grow: 1;
+}
+
+@media (max-width: 575px) {
+  .hero-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-stats {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-card {
+    max-width: 80%;
+  }
+
+  .hero-table {
+    max-width: 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-card {
+    max-width: 70%;
+  }
+}

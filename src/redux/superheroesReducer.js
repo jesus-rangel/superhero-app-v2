@@ -91,7 +91,7 @@ export default function (state = initialState, action) {
       setLocal("superTeam-team", state.team);
       return Object.assign({}, state);
 
-    case "VIEW_TEAM": // Returning to home screen where team is visible
+    case "VIEW_TEAM": // Returning to home screen where team will be visible
       state.userIsSearching = false;
       return Object.assign({}, state);
   }

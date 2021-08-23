@@ -6,7 +6,9 @@ import { alignmentColor } from "../../helpers/helperFunctions";
 import HeroTable from "./HeroTable";
 import Powerstats from "./Powerstats";
 
-const HeroShowcase = () => {
+import "./HeroSearchShowcase.css";
+
+const HeroSearchShowcase = () => {
   const dispatch = useDispatch();
 
   const results = useSelector((state) => state.results);
@@ -83,22 +85,24 @@ const HeroShowcase = () => {
                       <span className="lead">Place of work:</span>{" "}
                       {result.work.base}
                     </p>
-                    <p>
-                      <span className="lead">Appearance:</span>
-                      <br></br>
-                      Height: {result.appearance.height[1]}
-                      <br></br>
-                      Weight: {result.appearance.weight[1]}
-                      <br></br>
-                      Eye color: {result.appearance["eye-color"]}
-                      <br></br>
-                      Hair color: {result.appearance["hair-color"]}
-                    </p>
-                    <p>
-                      <span className="lead">PowerStats</span>
-                      <br></br>
-                      <Powerstats hero={result} />
-                    </p>
+                    <div className="hero-stats">
+                      <p className="hero-appearance">
+                        <span className="lead">Appearance:</span>
+                        <br></br>
+                        Height: {result.appearance.height[1]}
+                        <br></br>
+                        Weight: {result.appearance.weight[1]}
+                        <br></br>
+                        Eye color: {result.appearance["eye-color"]}
+                        <br></br>
+                        Hair color: {result.appearance["hair-color"]}
+                      </p>
+                      <p className="hero-powerstats">
+                        <span className="lead">PowerStats</span>
+                        <br></br>
+                        <Powerstats hero={result} />
+                      </p>
+                    </div>
                     <div className="text-center">
                       <button
                         className="btn btn-success"
@@ -119,4 +123,4 @@ const HeroShowcase = () => {
   );
 };
 
-export default HeroShowcase;
+export default HeroSearchShowcase;

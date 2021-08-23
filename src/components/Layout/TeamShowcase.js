@@ -22,7 +22,7 @@ const TeamShowcase = () => {
       <h4 className="text-center mt-3">
         {team.heroes.length === 0 ? "" : "Your Team:"}
       </h4>
-      <div className="row text-center heroes-in-team">
+      <div className="row text-center">
         {team.heroes.map((hero, index) => (
           <div
             key={index}

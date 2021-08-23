@@ -14,12 +14,16 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
     />
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="%PUBLIC_URL%/css/style.css" />
     <title>SuperTeam Creator</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
     <!-- 
@@ -43,15 +47,11 @@
               Please Authenticate Yourself
             </h5>
           </div>
-          <div class="modal-body">
-            <form onsubmit="authSubmitHandler()">
+          <form>
+            <div class="modal-body">
               <div class="form-group">
                 <label for="userEmail">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="userEmail"
-                />
+                <input type="email" class="form-control" id="userEmail" />
               </div>
               <div class="form-group">
                 <label for="userPassword">Password</label>
@@ -59,18 +59,25 @@
                   type="password"
                   class="form-control"
                   id="userPassword"
+                  aria-describedby="#invalid-credentials"
                 />
+                <small
+                  id="invalid-credentials"
+                  class="form-text text-danger invisible"
+                  >Invalid Credentials</small
+                >
               </div>
-          </div>
-          <div class="modal-footer">
-            <button 
-              type="submit" 
-              class="btn btn-info" 
-            >
-              Submit
-            </button>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-info"
+                onclick="authSubmitHandler()"
+              >
+                Submit
+              </button>
+            </div>
           </form>
-          </div>
         </div>
       </div>
     </div>
@@ -84,36 +91,7 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
-    <script>
-      const setLocal = (key, value) => {
-        const serializedValue = JSON.stringify(value);
-        localStorage.setItem(key, serializedValue);
-      };
-
-      const getLocal = (key) => {
-        const value = localStorage.getItem(key);
-        return JSON.parse(value);
-      };
-
-      
-      window.addEventListener("DOMContentLoaded", () => {
-        const token = getLocal("superheroToken");
-        if (!token || (!token.email === "challenge.alkemy.org" && !token.password === "react")) {
-          $("#authModal").modal("show");
-        }
-      });
-
-      const authSubmitHandler = () => {
-        const userEmail = document.getElementById("userEmail").value;
-        const userPassword = document.getElementById("userPassword").value;
-        console.log("User email: " + userEmail);
-        console.log("User password: " + userPassword);
-
-        if(userEmail === "challenge@alkemy.org" && userPassword === "react") {
-          setLocal("superheroToken", {email: userEmail, password: userPassword});
-          $("#authModal").modal("hide")
-        }
-      }
-    </script>
+    <script src="js/authModal.js"></script>
+    <script src="js/goTopButton.js"></script>
   </body>
 </html>
