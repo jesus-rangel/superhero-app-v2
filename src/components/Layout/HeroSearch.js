@@ -6,9 +6,9 @@ import { alignmentColor } from "../../helpers/helperFunctions";
 import HeroTable from "./HeroTable";
 import Powerstats from "./Powerstats";
 
-import "./HeroSearchShowcase.css";
+import "./HeroSearch.css";
 
-const HeroSearchShowcase = () => {
+const HeroSearch = () => {
   const dispatch = useDispatch();
 
   const results = useSelector((state) => state.results);
@@ -123,4 +123,4 @@ const HeroSearchShowcase = () => {
   );
 };
 
-export default HeroSearchShowcase;
+export default HeroSearch;

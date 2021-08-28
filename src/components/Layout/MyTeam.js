@@ -5,7 +5,7 @@ import { alignmentColor } from "../../helpers/helperFunctions";
 import HeroTable from "./HeroTable";
 import Powerstats from "./Powerstats";
 
-const TeamShowcase = () => {
+const MyTeam = () => {
   const dispatch = useDispatch();
   const team = useSelector((state) => state.team);
 
@@ -68,4 +68,4 @@ const TeamShowcase = () => {
   );
 };
 
-export default TeamShowcase;
+export default MyTeam;

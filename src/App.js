@@ -2,11 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 
-import HeroSearchShowcase from "./components/Layout/HeroSearchShowcase";
-import AuthModal from "./components/UI/AuthModal";
-import Navbar from "./components/UI/Navbar";
-import TeamShowcase from "./components/Layout/TeamShowcase";
 import GoTopButton from "./components/UI/GoTopButton";
+import HeroSearch from "./components/Layout/HeroSearch";
+import MyTeam from "./components/Layout/MyTeam";
+import Navbar from "./components/UI/Navbar";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,10 +16,9 @@ const App = () => {
     <div>
       <Navbar />
       <ToastContainer />
-      {!userIsSearching && <TeamShowcase />}
-      {userIsSearching && <HeroSearchShowcase />}
+      {!userIsSearching && <MyTeam />}
+      {userIsSearching && <HeroSearch />}
       <GoTopButton />
-      {/* <AuthModal /> */}
     </div>
   );
 };
