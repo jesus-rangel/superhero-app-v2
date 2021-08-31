@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./GoTopButton.css";
 
-/* Stack Overflow: code for detecting scrolling on Y axis */
-window.addEventListener("scroll", () => {
-  const goTopButton = document.querySelector("#go-top-button");
-
-  goTopButton.classList.toggle("visible", window.scrollY > 420);
-});
-
 function GoTopButton() {
+  const buttonRef = useRef();
+
+  /* Stack Overflow: code for detecting scrolling on Y axis */
+  window.addEventListener("scroll", () => {
+    const goTopButton = buttonRef.current;
+
+    goTopButton.classList.toggle("visible", window.scrollY > 420);
+  });
+
   return (
     <div>
-      <a href="#" id="go-top-button">
+      <a href="#" id="go-top-button" ref={buttonRef}>
         <i class="fas fa-arrow-up"></i>
       </a>
     </div>
